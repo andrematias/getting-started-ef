@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using EFProductControl.Domain;
-using EFProductControl.Data.Configuration;
 
 namespace EFProductControl.Data
 {
@@ -15,10 +14,7 @@ namespace EFProductControl.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new ClienteConfiguration());
-            modelBuilder.ApplyConfiguration(new ProdutoConfiguration());
-            modelBuilder.ApplyConfiguration(new PedidoConfiguration());
-            modelBuilder.ApplyConfiguration(new PedidoItemConfiguration());
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationContext).Assembly);
         }
     }
 }
