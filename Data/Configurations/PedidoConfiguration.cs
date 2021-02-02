@@ -11,7 +11,7 @@ namespace EFProductControl.Data.Configuration
         {
             builder.ToTable("Pedidos");
             builder.HasKey(p => p.Id);
-            builder.Property(p => p.IniciadoEm).HasDefaultValue("NOW()").ValueGeneratedOnAdd();
+            builder.Property(p => p.IniciadoEm).HasDefaultValueSql("getdate()").ValueGeneratedOnAdd();
             builder.Property(p => p.Status).HasConversion<string>();
             builder.Property(p => p.TipoFrete).HasConversion<string>();
             builder.Property(p => p.Observacao).HasColumnType("VARCHAR(512)");
