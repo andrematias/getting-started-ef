@@ -11,7 +11,7 @@ namespace EFProductControl.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlite("Data Source=productControl.db");
+            options.UseSqlite("Data Source=productControl.db", p=>p.MigrationsHistoryTable("migrations"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
