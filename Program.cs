@@ -1,6 +1,7 @@
 ﻿using System;
 using EFProductControl.Domain;
 using EFProductControl.ValueObjects;
+using System.Linq;
 
 namespace EFProductControl
 {
@@ -8,7 +9,22 @@ namespace EFProductControl
     {
         static void Main(string[] args)
         {
-            AlteraDados();
+            BuscarDados("Lucia");
+        }
+
+        private static void BuscarDados(string name)
+        {
+            using var db = new Data.ApplicationContext();
+            var clientes = db.Clientes.Where(p => p.Nome.Contains(name)).OrderBy(p => p.Id);
+            foreach(var cliente in clientes)
+            {
+                Console.WriteLine($"Id: {cliente.Id}");
+                Console.WriteLine($"Nome: {cliente.Nome}");
+                Console.WriteLine($"Telefone: {cliente.Telefone}");
+                Console.WriteLine($"Cidade: {cliente.Cidade}");
+                Console.WriteLine($"Cep: {cliente.CEP}");
+                Console.WriteLine("---------------------------------");
+            }
         }
 
         private static void AlteraDados()
