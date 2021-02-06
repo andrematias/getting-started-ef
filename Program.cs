@@ -8,7 +8,15 @@ namespace EFProductControl
     {
         static void Main(string[] args)
         {
-            InserirDadosEmMassa();
+            AlteraDados();
+        }
+
+        private static void AlteraDados()
+        {
+            using var db = new Data.ApplicationContext();
+            var cliente = db.Clientes.Find(1);
+            cliente.Nome = "Maria do Carmo";
+            db.SaveChanges();
         }
 
         private static void InserirDadosEmMassa()
